@@ -1,0 +1,16 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh -l\nset -euo pipefail\n\n# $1 = FileDirname (le dossier contenant build\/)\ncd \"$1\"\n\n# Copier les PDF de build\/ vers ici\nif [[ -d build ]]; then\n  cp build\/*.pdf . 2>\/dev\/null || true\nfi\n\n# Supprimer le contenu de build\/\nrm -rf build\nmkdir -p build\n"
+    },
+    "run" : {
+      "enabled" : true
+    }
+  },
+  "arguments" : [
+    "\\$FileDirname",
+    "\\$FileBasename"
+  ],
+  "openLogOnRun" : "start"
+}

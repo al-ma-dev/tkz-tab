@@ -1,0 +1,154 @@
+% Copyright 2020-2026  Alain Matthes
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+% http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX version 2005/12/01 or later.
+% This work has the LPPL maintenance status “maintained”.
+% The Current Maintainer of this work is Alain Matthes.
+% ``TKZdoc-tab-main '' is the American English doc of tkz-tab
+
+\documentclass[DIV         = 14,
+               fontsize    = 10,
+               headinclude = false,
+               index       = totoc,
+               footinclude = false,
+               twoside,
+               headings    = small
+               ]{tkz-doc}
+\usepackage{etoc}
+
+\gdef\tkznameofpack{Tkz-Tab}
+\gdef\tkzversionofpack{2.13c}
+\gdef\tkzdateofpack{2026/10/19}
+\gdef\tkznameofdoc{doc-tkz-tab}
+\gdef\tkzdateofdoc{2026/10/19}
+\gdef\tkzversionofdoc{2.13c}
+\gdef\tkzauthorofpack{Alain Matthes}
+\gdef\tkzadressofauthor{}
+\gdef\tkznamecollection{AlterMundus}
+\gdef\tkzurlauthor{http://altermundus.fr}
+\gdef\tkzurlauthorcom{http://altermundus.fr}
+\gdef\tkzengine{lualatex}
+
+\usepackage{tkz-tab}
+\usetikzlibrary[petri,babel]
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+      linkcolor=Gray,
+      citecolor=Green,
+      filecolor=Mulberry,
+      urlcolor=NavyBlue,
+      menucolor=Gray,
+      runcolor=Mulberry,
+      linkbordercolor=Gray,
+      citebordercolor=Green,
+      filebordercolor=Mulberry,
+      urlbordercolor=NavyBlue,
+      menubordercolor=Gray,
+      runbordercolor=Mulberry,
+      pdfsubject={Tables of signs and variations},
+      pdfauthor={\tkzauthorofpack},
+      pdftitle={\tkznameofpack},
+      pdfkeywords={tikz, pgf, pdf, lualatex, graphic, maths, table,
+      sign chart, variation table, function},
+      pdfcreator={\tkzengine}
+}
+\usepackage{tkzexample}
+\usepackage{fontspec}
+\setmainfont{texgyrepagella}[
+  Extension = .otf,
+  UprightFont = *-regular ,
+  ItalicFont  = *-italic  ,
+  BoldFont    = *-bold    ,
+  BoldItalicFont = *-bolditalic ,
+]
+\setsansfont{texgyreheros}[
+  Extension = .otf,
+  UprightFont = *-regular ,
+  ItalicFont  = *-italic  ,
+  BoldFont    = *-bold    ,
+  BoldItalicFont = *-bolditalic ,
+]
+
+\setmonofont{lmmono10-regular.otf}[
+  Numbers={Lining,SlashedZero},
+  ItalicFont=lmmonoslant10-regular.otf,
+  BoldFont=lmmonolt10-bold.otf,
+  BoldItalicFont=lmmonolt10-boldoblique.otf,
+]
+\newfontfamily\ttcondensed{lmmonoltcond10-regular.otf}
+\linespread{1.05}      % Pagella needs more space between lines
+\usepackage{unicode-math}
+\usepackage{fourier-otf}
+\usepackage{calc}
+\usepackage[american]{babel}
+\usepackage[np,autolanguage]{numprint}
+\usepackage[parfill]{parskip}
+\usepackage{array,multirow,multido,booktabs}
+\usepackage{shortvrb,fancyvrb}
+\renewcommand{\labelitemi}{--}
+
+\usepackage{url}
+\def\UrlFont{\small\ttfamily}
+\AtBeginDocument{\MakeShortVerb{\|}}
+
+\colorlet{graphicbackground}{white}
+\colorlet{codebackground}{Gray!20}
+\newcommand*{\E}{\ensuremath{\mathrm{e}}}
+
+\setlength\parindent{0pt}
+\RequirePackage{makeidx}
+\makeindex
+%<--------------------------------------------------------------------------->
+\begin{document}
+
+
+\title{\tkznameofpack}
+\date{\today}
+\clearpage
+\thispagestyle{empty}
+ \maketitle
+\clearpage
+
+\nameoffile{\tkznameofpack}
+\defoffile{\textbf{tkz-tab.sty} is a package for drawing tables of signs and tables of variations with \TIKZ, as simply as possible. These tables are the usual way, in French secondary schools and universities, to summarize the study of a function: the sign of its derivative and its increasing or decreasing intervals, with its limits and extreme values. The package depends on \TIKZ\ and belongs to a series of packages whose common aim is to create drawings that are useful for teaching mathematics. I hope that reading this documentation will help you appreciate how easy \TIKZ\ is to use, and will encourage you to start using it.}
+
+\presentation
+
+\vfill
+\lefthand\ I thank \tkzimp{Till Tantau} for allowing us to use \tkzname{\TIKZ}.
+
+\lefthand\ I thank \tkzimp{Michel Bovani} for allowing us to use \tkzname{fourier} and \tkzname{utopia} with \LaTeX.
+
+\lefthand\ I thank \tkzimp{Henri-Claude Dufresne} for his careful reading of the documentation and his suggested corrections.
+
+\lefthand\ I also thank \tkzimp{Jean-Côme Charpentier}, \tkzimp{Manuel Pégourié-Gonnard}, \tkzimp{Franck Pastor}, \tkzimp{Ulrike Fischer} and \tkzimp{Josselin Noirel} for the ideas and advice that helped me write this package, as well as \tkzimp{Herbert Vo\ss} for his document \tkzname{mathmode.pdf}.
+
+\clearpage
+\tableofcontents
+%<--------------------------------------------------------------------------->
+\newcommand*{\va}{\colorbox{red!50}    {$\scriptscriptstyle V_a$}}
+\newcommand*{\vb}{\colorbox{blue!50}   {$\scriptscriptstyle V_b$}}
+\newcommand*{\vbo}{\colorbox{blue!50}  {$\scriptscriptstyle V_{b1}$}}
+\newcommand*{\vbt}{\colorbox{yellow!50}{$\scriptscriptstyle V_{b2}$}}
+\newcommand*{\vc}{\colorbox{gray!50}   {$\scriptscriptstyle V_c$}}
+\newcommand*{\vd}{\colorbox{magenta!50}{$\scriptscriptstyle V_d$}}
+\newcommand*{\ve}{\colorbox{orange!50} {$\scriptscriptstyle V_e$}}
+%<--------------------------------------------------------------------------->
+\input{TKZdoc-tab-init}
+\input{TKZdoc-tab-sign}
+\input{TKZdoc-tab-variation}
+\input{TKZdoc-tab-tv}
+\input{TKZdoc-tab-valeurs}
+\input{TKZdoc-tab-image}
+\input{TKZdoc-tab-tangente}
+\input{TKZdoc-tab-slope}
+\input{TKZdoc-tab-style}
+\input{TKZdoc-tab-adapt}
+\input{TKZdoc-tab-examples}
+%<-------------------------------------------------------------------------->
+\newpage
+\printindex
+\end{document}

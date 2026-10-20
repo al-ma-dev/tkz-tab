@@ -1,0 +1,11 @@
+{
+  "actions": {
+    "run": {
+      "enabled": true,
+      "script": "#!/bin/zsh\nlatexindent -w \"$1\"\n"
+    }
+  },
+  "arguments": [
+    "${File}"
+  ]
+}

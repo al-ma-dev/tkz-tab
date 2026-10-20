@@ -1,0 +1,17 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh -l\nset -e\n\n# $1 = dossier du .tex \n# $2 = chemin complet du .tex \n\ncd \"$1\" || exit 1\nmkdir -p build\n\nname=\"$(basename \"${2%.*}\")\"   \npdf_build=\"build\/$name.pdf\" \npdf_final=\"$name.pdf\"\n\n# Compilation unique dans build\/\n \/Library\/TeX\/texbin\/lualatex \\\n  -interaction=nonstopmode -file-line-error -shell-escape -synctex=1 \\\n  -output-directory=build \"$2\" || true"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh -l\nset -e\n\n# $1 = dossier du .tex\n# $2 = chemin complet du .tex\n\ncd \"$1\" || exit 1\nname=\"$(basename \"${2%.*}\")\"\n\n# Ouvre directement le PDF compilé\nopen -a Skim \"build\/$name.pdf\"\n\nexit 0\n"
+    }
+  },
+  "arguments" : [
+    "${FileDirname}",
+    "${FileBasename}"
+  ],
+  "buildBeforeRunning" : true
+}

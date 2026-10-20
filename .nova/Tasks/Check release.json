@@ -1,0 +1,12 @@
+{
+  "actions": {
+    "run": {
+      "enabled": true,
+      "script": "#!/bin/zsh\n\"$HOME/Documents/WKS/_scripts/pkg-check\" \"$1\" </dev/null\n"
+    }
+  },
+  "arguments": [
+    "${WorkspaceFolder}"
+  ],
+  "openLogOnRun": "start"
+}

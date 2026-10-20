@@ -1,0 +1,11 @@
+{
+  "actions" : {
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh -l\nstylua \"$1\""
+    }
+  },
+  "arguments" : [
+    "${File}"
+  ]
+}

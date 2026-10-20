@@ -1,0 +1,12 @@
+{
+  "actions": {
+    "run": {
+      "enabled": true,
+      "script": "#!/bin/zsh\n\"$HOME/Documents/WKS/_scripts/tex-log\" \"$1\"\n"
+    }
+  },
+  "arguments": [
+    "${File}"
+  ],
+  "openLogOnRun": "start"
+}

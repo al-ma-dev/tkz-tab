@@ -1,0 +1,12 @@
+{
+  "actions" : {
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh -l\nset -e\n\n# $1 = dossier du .tex (ici: doc\/src)\n# $2 = chemin du .tex (ici: doc\/src\/TKZdoc-elements-main.tex)\ncd \"$1\" || exit 1\nmkdir -p build\n\nname=\"$(basename \"${2%.*}\")\"        # -> TKZdoc-elements-main\npdf_build=\"build\/$name.pdf\"          # -> build\/TKZdoc-elements-main.pdf\npdf_final=\"..\/tkz-elements.pdf\"      # -> doc\/tkz-elements.pdf (un niveau au-dessus de src)\n\n# 1ère passe\n\/Library\/TeX\/texbin\/lualatex -interaction=nonstopmode -file-line-error -shell-escape -synctex=1 \\\n  -output-directory=build \"$2\" || true\n\n# makeindex si besoin\nif [[ -f \"build\/$name.idx\" ]]; then\n  \/Library\/TeX\/texbin\/makeindex -q -o \"build\/$name.ind\" \"build\/$name.idx\" || true\nfi\n\n# 2ème passe\n\/Library\/TeX\/texbin\/lualatex -interaction=nonstopmode -file-line-error -shell-escape -synctex=1 \\\n  -output-directory=build \"$2\" || true\n\n# Copier le PDF final dans doc\/\n# cp \"$pdf_build\" \"$pdf_final\"\n\n# Ouvrir le PDF final dans Skim\n\/usr\/bin\/open -a \/Applications\/Skim.app \"$pdf_build\"\n\n# Nettoyer le build local (doc\/src\/build)\n# rm -rf build\n\nexit 0\n"
+    }
+  },
+  "arguments" : [
+    "\\$FileDirname",
+    "\\$FileBasename"
+  ]
+}

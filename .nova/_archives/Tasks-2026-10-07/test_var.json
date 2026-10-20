@@ -1,0 +1,16 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/zsh -l\nfilepath=\"$1\"\nfiledir=\"$(dirname \"$filepath\")\"\nfilebase=\"$(basename \"$filepath\" .tex)\"\n\necho \"FilePath    = $filepath\"\necho \"FileDirname = $filedir\"\necho \"FileBasename = $filebase\""
+    }
+  },
+  "arguments" : [
+    "\\$FilePath",
+    "\\$FileBasename",
+    "\\$FileDirname"
+  ]
+}

@@ -1,0 +1,285 @@
+\newpage
+\section{Using styles}
+\subsection{Definition of \tkzcname{tkzTabSetup}}
+
+The simplest way is the macro \tkzcname{tkzTabSetup}, which changes the main styles.
+
+\begin{NewMacroBox}{tkzTabSetup}{\oarg{local options}}
+
+\begin{tabular}{llc}
+\toprule
+\texttt{arguments}   & \texttt{default}    & \texttt{definition}                 \\
+\midrule
+\IargName{tkzTabSetup}{doubledistance} & |1pt| & gap of the double bar         \\
+\IargName{tkzTabSetup}{doublecolor}  & |white|  & color inside the double bar         \\
+\IargName{tkzTabSetup}{lw}  & |0.4pt| & line width                \\
+\IargName{tkzTabSetup}{color}  & |black| & line color               \\
+\midrule
+\IargName{tkzTabSetup}{tstyle}  & |dotted|  & style of the vertical rules        \\
+\IargName{tkzTabSetup}{tcolor  } & |black| & color of the vertical rules       \\
+\IargName{tkzTabSetup}{tanarrowstyle}&|latex'|&arrow tip of a tangent  \\
+\IargName{tkzTabSetup}{tanstyle}& |->| & style of a tangent              \\
+\IargName{tkzTabSetup}{tancolor}& |black| & color of a tangent          \\
+\IargName{tkzTabSetup}{tanwidth}& |0.4pt|& line width of a tangent         \\
+\IargName{tkzTabSetup}{fromarrowstyle}&|latex'|&arrow tip, value -> image   \\
+\IargName{tkzTabSetup}{fromstyle }& |->|  & style, value -> image              \\
+\IargName{tkzTabSetup}{fromcolor }& |black|  & color, value -> image         \\
+\IargName{tkzTabSetup}{fromwidth }& |0.4pt|  & line width, value -> image      \\
+\IargName{tkzTabSetup}{hcolor   } & |gray|  & color of a forbidden zone        \\
+\IargName{tkzTabSetup}{hopacity } & |0.4|  & opacity of the color of a forbidden zone         \\
+\IargName{tkzTabSetup}{crosslines}& |false|  & boolean; true hatches the forbidden zone  \\
+\IargName{tkzTabSetup}{arrowcolor}& |black|  & color of an arrow of variation     \\
+\IargName{tkzTabSetup}{arrowstyle}& |latex'| & arrow tip of an arrow of variation     \\
+\IargName{tkzTabSetup}{arrowlinewidth}&|0.4pt|&line width of an arrow of variation  \\
+\bottomrule
+\end{tabular}
+
+\medskip
+\noindent\emph{Use this macro at the beginning, before the table. Line widths are usually given in \tkzname{pt}; the default value is the most common one. Each call resets to their default values the keys that are not given.}
+
+\end{NewMacroBox}
+
+\subsubsection{Using \tkzname{doubledistance} and \tkzname{hcolor}}
+
+\begin{center}
+\begin{tikzpicture}
+   \tkzTabColors[backgroundcolor=fondpaille,%
+             color=Maroon]
+  \tkzTabSetup[doubledistance = 2pt]
+  \tkzTabInit[lgt=2,espcl=1]
+  {$x$         /1, $x^2-3x+2$   /1, $\ln (x^2-1)$  /1,  $E(x)$       /1}%
+  {$-\infty$ ,$-\sqrt{2}$, $-1$ , $1$ ,$\sqrt{2}$ , $2$ , $+\infty$}%
+  \tkzTabLine{ , + , t , + , t , + , z , - , t , - , z , + , }
+  \tkzTabLine{ , + , z , - , d , h , d , - , z , + , t , + , }
+  \tkzTabLine{ , + , z , - , d , h , d , +  ,z , - , z , + , }
+\end{tikzpicture}
+\end{center}
+
+
+\begin{tkzexample}[code only,small]
+\begin{tikzpicture}
+ \tkzTabColors[backgroundcolor=fondpaille,%
+           color=Maroon]
+\tkzTabSetup[doubledistance = 2pt]
+\tkzTabInit[lgt=2,espcl=1]
+{$x$         /1, $x^2-3x+2$   /1, $\ln (x^2-1)$  /1,  $E(x)$       /1}%
+{$-\infty$ ,$-\sqrt{2}$, $-1$ , $1$ ,$\sqrt{2}$ , $2$ , $+\infty$}%
+\tkzTabLine{ , + , t , + , t , + , z , - , t , - , z , + , }
+\tkzTabLine{ , + , z , - , d , h , d , - , z , + , t , + , }
+\tkzTabLine{ , + , z , - , d , h , d , +  ,z , - , z , + , }
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Using \tkzname{fromcolor} and \tkzname{tancolor}}
+
+\begin{center}
+	\begin{tikzpicture}
+	 \tkzTabSetup[fromcolor        = red, tancolor         = blue,,backgroundcolor=fondpaille,%
+	             color=Maroon]
+	 \tkzTabInit[espcl=4]
+	    { $x$          /1,  $f''(x)$     /1,  $f'$      /3, $f$       /4}%
+	    { $0$      , $1$ ,     $\alpha$,$+\infty$ }%
+	 \tkzTabLine {d    , + ,   z  , -  ,      , -  }%
+	 \tkzTabVar
+	   {- / $1$       /,  + /           /,  R /           /, - / $-\infty$ /}
+
+	 \tkzTabVal[draw]{2}{4}{0.5}{}{0}
+	 \tkzTabIma[draw]{2}{4}{3}{$0$}
+	 \tkzTabTan[pos]{1}{2}{2}{$2$}
+	 \tkzTabVar
+	    {- / $-\infty$ ,  R /  , + / $1$ , - / $0$       }
+	  \tkzTabIma[draw]{1}{3}{2}{$0$}
+	\end{tikzpicture}
+\end{center}
+
+
+\begin{tkzexample}[code only,small]
+\begin{tikzpicture}
+ \tkzTabSetup[fromcolor        = red, tancolor         = blue,,backgroundcolor=fondpaille,%
+             color=Maroon]
+ \tkzTabInit[espcl=4]
+    { $x$          /1,  $f''(x)$     /1,  $f'$      /3, $f$       /4}%
+    { $0$      , $1$ ,     $\alpha$,$+\infty$ }%
+ \tkzTabLine {d    , + ,   z  , -  ,      , -  }%
+ \tkzTabVar
+   {- / $1$       /,  + /           /,  R /           /, - / $-\infty$ /}
+
+ \tkzTabVal[draw]{2}{4}{0.5}{}{0}
+ \tkzTabIma[draw]{2}{4}{3}{$0$}
+ \tkzTabTan[pos]{1}{2}{2}{$2$}
+ \tkzTabVar
+    {- / $-\infty$ ,  R /  , + / $1$ , - / $0$       }
+  \tkzTabIma[draw]{1}{3}{2}{$0$}
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{Changing the styles with \tkzcname{tikzset}}
+
+Here is the list of the styles used and their definitions.
+
+\begin{tabular}{ll}
+\toprule
+\tkzname{node style} & style of the nodes used for the values placed in the table  \\
+\tkzname{low left} &  value at the bottom left of a vertical rule  \\
+\tkzname{low right} & value at the bottom right of a vertical rule\\
+\tkzname{high left} & value at the top left of a vertical rule\\
+\tkzname{high right}& value at the top right of a vertical rule\\
+\tkzname{low} & value at the bottom of a vertical rule \\
+\tkzname{high} & value at the top of a vertical rule \\
+\tkzname{on double} & background color under a double bar \\
+\tkzname{tan style} & style of a tangent\\
+\tkzname{arrow style} & style of the arrows of variation\\
+\tkzname{from style} & style of the line from a value to its image\\
+\tkzname{h style} & style of a forbidden zone\\
+\tkzname{double style} & style of a double bar\\
+\tkzname{t style} & style of a vertical rule\\
+\bottomrule
+\end{tabular}
+
+
+The default values are:
+\begin{tkzexample}[code only, small]
+\def\tkzTabDefaultWritingColor{black}
+\def\tkzTabDefaultBackgroundColor{white}
+\def\tkzTabDefaultLineWidth{0.4pt}
+\def\tkzTabDefaultArrowStyle{latex'}
+\def\tkzTabDefaultSep{2pt}
+\end{tkzexample}
+
+The main default styles are:
+
+\begin{tkzexample}[code only, small]
+\tikzset{node style/.style  = {inner sep   =  \tkzTabDefaultSep,
+                               outer sep   =  \tkzTabDefaultSep,
+                               fill        =  \tkzTabDefaultBackgroundColor}}
+\tikzset{tan style/.style   = {>           =  \tkzTabDefaultArrowStyle,
+                               ->,
+                               color       =  \tkzTabDefaultWritingColor}}
+\tikzset{arrow style/.style = {\tkzTabDefaultWritingColor,
+                               ->,
+                               >            = \tkzTabDefaultArrowStyle,
+                               shorten >    = \tkzTabDefaultSep,
+                               shorten <    = \tkzTabDefaultSep}}
+\tikzset{from style/.style   = {shorten >   = \tkzTabDefaultSep,
+                                shorten <   = \tkzTabDefaultSep,
+                                line width  = \tkzTabDefaultLineWidth,
+                                >           = \tkzTabDefaultArrowStyle,
+                                ->,
+                                draw        = \tkzTabDefaultWritingColor,
+                                dotted}}
+\tikzset{t style/.style = {style  = dotted,
+                           draw   = \tkzTabDefaultWritingColor}}
+\tikzset{h style/.style = {pattern       = north west lines,
+                           pattern color = \tkzTabDefaultWritingColor}}
+\tikzset{on double/.style   = {fill      =  \tkzTabDefaultBackgroundColor}}
+\tikzset{double style/.append style = {%
+         draw            = \tkzTabDefaultWritingColor,
+         double          =  \tkzTabDefaultBackgroundColor}}
+\end{tkzexample}
+
+The background colors of the different parts of the table are defined by the styles:
+\begin{tkzexample}[code only, small]
+\tikzset{fondC/.style={fill = \tkzTabDefaultBackgroundColor}}
+\tikzset{fondL/.style={fill = \tkzTabDefaultBackgroundColor}}
+\tikzset{fondT/.style={fill = \tkzTabDefaultBackgroundColor}}
+\tikzset{fondV/.style={fill = \tkzTabDefaultBackgroundColor}}
+\end{tkzexample}
+Finally, the positions of the values with respect to the arrows are:
+\begin{tkzexample}[code only, small]
+\tikzset{low left/.style    = {above left  =  \tkzTabDefaultSep}}
+\tikzset{low right/.style   = {above right =  \tkzTabDefaultSep}}
+\tikzset{high right/.style  = {below right =  \tkzTabDefaultSep}}
+\tikzset{high left/.style   = {below left  =  \tkzTabDefaultSep}}
+\tikzset{low/.style         = {above       =  \tkzTabDefaultSep}}
+\tikzset{high/.style        = {below       =  \tkzTabDefaultSep}}
+\end{tkzexample}
+
+\subsubsection{Using \tkzcname{tikzset} and \tkzname{h style}}
+
+
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}
+  \tkzTabColors[backgroundcolor=fondpaille,%
+                color=Maroon]
+  \tkzTabSetup[doubledistance = 2pt]
+  \tikzset{h style/.style = {fill=red!50}}
+  \tkzTabInit[color,espcl=1.5]%
+    {$x$ / 1,$g(x)$ / 1}%
+    {$0$,$1$,$2$,$3$}%
+  \tkzTabLine{z,+,d,h,d,-,t}
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Hatching with \tkzcname{tikzset} and \tkzname{h style}}
+
+\begin{tkzexample}[latex=8cm,small]
+\begin{tikzpicture}
+\tikzset{h style/.append style = {%
+         pattern=north east lines}}
+\tkzTabInit[color,espcl=1.5]%
+    {$x$ / 1,$g(x)$ / 1}%
+    {$0$,$1$,$2$,$3$}%
+\tkzTabLine{z,+,,h,d,-,t}
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Using \tkzcname{tikzset} and \tkzname{arrow style}}
+
+\begin{center}
+	\begin{tkzexample}[vbox,small]
+	  %\newcommand*{\E}{\ensuremath{\mathrm{e}}}
+	\begin{tikzpicture}
+
+	\tikzset{arrow style/.append style = {red,shorten >=6pt,shorten <=6pt}}
+	\tkzTabInit[espcl=5]{$x$ /1, $\ln x +1$ /1.5, $x \ln x$ /2}%
+	{$0$ ,$1/\E$ , $+\infty$}%
+	\tkzTabLine{d,-,z,+,}
+	\tkzTabVar%
+	{ D+/ / $0$ ,%
+	-/ \colorbox{black}{\textcolor{white}{$\dfrac{-1}{e}$}}/ ,%
+	+/ $+\infty$ / }%
+	\end{tikzpicture}
+	\end{tkzexample}
+\end{center}
+
+
+\subsubsection{Using \tkzcname{tikzset} and \tkzcname{tkzTabSetup}}
+
+ Note the last \tkzcname{tkzTabSetup}, which resets the default values.
+
+\begin{center}
+	\begin{tkzexample}[vbox,small]
+	% \newcommand*{\va}{\colorbox{red!50}    {$\scriptscriptstyle V_a$}}
+	% \newcommand*{\vb}{\colorbox{blue!50}   {$\scriptscriptstyle V_b$}}
+	% \newcommand*{\vc}{\colorbox{gray!50}   {$\scriptscriptstyle V_c$}}
+	% \newcommand*{\vd}{\colorbox{magenta!50}{$\scriptscriptstyle V_d$}}
+	% \newcommand*{\ve}{\colorbox{orange!50} {$\scriptscriptstyle V_e$}}
+
+	\begin{tikzpicture}
+	\tkzTabSetup[fromcolor      =  red,
+	            fromstyle       = dashed,
+	            fromwidth       = 1pt,
+	            fromarrowstyle  = stealth',
+	            arrowcolor      = green ]
+	  \tkzTabInit[lgt=1.5,espcl=5]{ $x$/.7,$f''(x)$/.7,$f'$/3,$f$/3 }%
+	             {  $a$    , $d$    ,$e$}
+	  \tkzTabLine{  z,+    ,z,-     ,z  }
+	  \tkzTabVar  {-/\va  ,+/\vd   , -/  \ve}
+	  \tkzTabVal[draw,remember=vb]{1}{2}{0.333}{b}{$1$}
+	  \tikzset{from style/.append style = {draw      =  blue}}
+	  \tkzTabVal[draw,remember=vc]{1}{2}{0.666}{c}{$2$}
+	  \tkzTabVar{-/$-\infty$  ,R/   , +/  $+\infty$}
+	  \tkzTabSetup
+	  \tkzTabVal[draw]{1}{3}{0.5}{}{$0$}
+	  \draw[opacity=0.5,fill=red!40]  (vb) circle(2ex);
+	  \draw[opacity=0.5,fill=blue!40] (vc) circle(2ex);
+	\end{tikzpicture}
+	\end{tkzexample}
+\end{center}
+
+
+
+\endinput
+
+
+

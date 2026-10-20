@@ -1,0 +1,20 @@
+{
+  "actions": {
+    "build": {
+      "enabled": true,
+      "script": "#!/bin/zsh\n\"$HOME/Documents/WKS/_scripts/tex-full\" \"$1\"\n"
+    },
+    "run": {
+      "enabled": true,
+      "script": "#!/bin/zsh\n\"$HOME/Documents/WKS/_scripts/tex-fast\" \"$1\"\n"
+    },
+    "clean": {
+      "enabled": true,
+      "script": "#!/bin/zsh\n\"$HOME/Documents/WKS/_scripts/tex-clean\" \"$1\"\n"
+    }
+  },
+  "arguments": [
+    "${File}"
+  ],
+  "openLogOnRun": "start"
+}

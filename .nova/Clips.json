@@ -1,0 +1,19 @@
+{
+  "clips" : [
+    {
+      "content" : "% !TEX TS-program = lualatex\n% Created by Alain Matthes on $DATE.\n% Copyright (c) $DATE AlterMundus.\n\\documentclass[margin=6pt]{standalone}\n\\usepackage[mini]{tkz-euclide}\n\\usepackage{tkz-elements}\n\\begin{document}\n\n\\directlua{\nz.A = point:new (0, 0)\nz.B = point:new (5, 0)\nz.C = point:new (1, 4)\nT.ABC = triangle:new(z.A, z.B, z.C)\nL.AB = line:new(z.A, z.B)\n}\n\n\\begin{tikzpicture}\n\\tkzGetNodes\n\\tkzDrawCircles()\n\\tkzDrawPolygon(A,B,C)\n\\tkzDrawPoints(A,B,C)\n\\tkzLabelPoints(A,B)\n\\tkzLabelPoints[above](C)\n\n\\$0\n\\end{tikzpicture}\n\\end{document}\n",
+      "name" : "LuaLaTeX standalone tkz",
+      "scope" : "editor",
+      "shortcut" : "cmd-alt-ctrl-k",
+      "syntax" : "latex",
+      "trigger" : "tmp"
+    },
+    {
+      "content" : "z.${:X} = point(${:n1}, ${:n2})",
+      "name" : "Point",
+      "scope" : "editor",
+      "syntax" : "lua",
+      "trigger" : "pt"
+    }
+  ]
+}
